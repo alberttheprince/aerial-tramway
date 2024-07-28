@@ -1,8 +1,5 @@
 -- Config
-
--- Turn Blip on/of for the railway
-local blipDisplay = false 
-
+local blipDisplay = false  -- True = show blips for tramway (moves with tramway) false = show no blips
 
 
 -- Lerp (linear interpolation) functionality for the cable cars track/pathing
