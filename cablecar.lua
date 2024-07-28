@@ -1,8 +1,11 @@
 -- Config
-local blipDisplay = false  -- True = show blips for tramway (moves with tramway) false = show no blips
+
+-- Turn Blip on/of for the railway
+local blipDisplay = false 
 
 
--- Lerp (linear interpolation) functionality for the cable cars track/pathing
+
+-- Lerp (linear interpolation) functionality
 function Lerp(a, b, t)
 	return a + (b - a) * t
 end
@@ -249,7 +252,7 @@ function DrawCablecarText3D(text, x, y, z, s, font, a)
     local dist = GetDistanceBetweenCoords(px, py, pz, x, y, z, 1)
 
     if s == nil then
-        s = 1.0
+        s = 0.45
     end
     if font == nil then
         font = 4
@@ -570,7 +573,7 @@ function GivePlayerOptionToJoinMyCablecar(cablecar, moving)
         local plypos = GetEntityCoords(ply, true)
         local dist = #(pos - plypos)
         if dist < 3.0 then
-            DrawCablecarText3D("Press ~g~E ~w~to enter the cablecar", pos.x, pos.y, pos.z + 1.0)
+            DrawCablecarText3D("Press ~g~E ~w~to enter the cablecar", pos.x, pos.y, pos.z)
             if IsControlJustPressed(0, 38) then
                 cablecar.is_player_seated = true
                 FreezeEntityPosition(xPlayer ,true)
@@ -581,7 +584,7 @@ AttachEntityToEntity(ply, cablecar.entity, -1, (plypos - cablecar.position), Get
     else
         -- give player option to exit
         if not moving then
-            DrawCablecarText3D("Press ~g~E ~w~to exit the cablecar", pos.x, pos.y, pos.z + 1.0)
+            DrawCablecarText3D("Press ~g~E ~w~to exit the cablecar", pos.x, pos.y, pos.z)
             if IsControlJustPressed(0, 38) then
                 cablecar.is_player_seated = false
 FreezeEntityPosition(xPlayer ,false)
