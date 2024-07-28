@@ -1,4 +1,11 @@
--- Lerp, not to be confused with Liable Emerates Role Play
+-- Config
+
+-- Turn Blip on/of for the railway
+local blipDisplay = false 
+
+
+
+-- Lerp (linear interpolation) functionality for the cable cars track/pathing
 function Lerp(a, b, t)
 	return a + (b - a) * t
 end
@@ -75,7 +82,7 @@ local CABLE_CARS = {
         speed = 17.5, -- Movement speed modifier, determines the speed of the car on the track
 		maxSpeedDistance = 50, -- Distance from station at which the car will attain maximum speed
         state = "IDLE", -- The current state of the car
-	showTramBlips = false, -- Show blip on the map
+	showTramBlips = blipDisplay, -- Show blip on the map
         offset = vector3(-0.2, 0.0, 0.0),
     },
     [1] = { -- Right track car
@@ -98,12 +105,12 @@ local CABLE_CARS = {
         speed = 17.5,
 		maxSpeedDistance = 50,
         state = "IDLE",
-	showTramBlips = true,
+	showTramBlips = blipDisplay,
         offset = vector3(-0.2, 0.0, 0.0),
     },
 }
 
-Citizen.CreateThread(function()
+CreateThread(function()
     -- Load the things we need
     while not HasModelLoaded("p_cablecar_s") do
         RequestModel("p_cablecar_s")
@@ -394,7 +401,7 @@ function UpdateCablecarMovement(cablecar)
             -- Check if we've reached the bottom again
             if cablecar.gradient <= 1 then
                 -- Set to raw idle to do nothing and ask the server to sync cars
-                cablecar.state = "MOVE_TO_IDLE_BOTTOM"
+                cablecar.state = "IDLE"
                 cablecar.gradient_distance = 0.0
                 TriggerServerEvent("omni:sync", cablecar.index, "IDLE_BOTTOM")
                 return
