@@ -202,8 +202,8 @@ Citizen.CreateThread(function()
     end
 end)
 
-RegisterNetEvent("omni:cablecar:forceState")
-AddEventHandler("omni:cablecar:forceState", function(index, state)
+RegisterNetEvent("omni:forceState")
+AddEventHandler("omni:forceState", function(index, state)
     local cablecar = CABLE_CARS[index]
     if state == "IDLE_BOTTOM" then
         cablecar.state = "MOVE_TO_IDLE_BOTTOM"
@@ -406,7 +406,7 @@ function UpdateCablecarMovement(cablecar)
                 -- Set to raw idle to do nothing and ask the server to sync cars
                 cablecar.state = "IDLE"
                 cablecar.gradient_distance = 0.0
-                TriggerServerEvent("omni:cablecar:host:sync", cablecar.index, "IDLE_BOTTOM")
+                TriggerServerEvent("omni:sync", cablecar.index, "IDLE_BOTTOM")
                 return
             end
 
@@ -579,7 +579,9 @@ function GivePlayerOptionToJoinMyCablecar(cablecar, moving)
             DrawCablecarText3D("Press ~g~E ~w~to enter the cablecar", pos.x, pos.y, pos.z + 1.0)
             if IsControlJustPressed(0, 38) then
                 cablecar.is_player_seated = true
-                AttachEntityToEntity(ply, cablecar.entity, 0, (plypos - cablecar.position), GetEntityRotation(ply, 0), 0, 0, 0, 1, 0, 0)
+                FreezeEntityPosition(xPlayer ,true)
+
+AttachEntityToEntity(ply, cablecar.entity, -1, (plypos - cablecar.position), GetEntityRotation(ply, 0), 0, 0, 0, 1, 0, 1)
             end
         end
     else
@@ -588,6 +590,7 @@ function GivePlayerOptionToJoinMyCablecar(cablecar, moving)
             DrawCablecarText3D("Press ~g~E ~w~to exit the cablecar", pos.x, pos.y, pos.z + 1.0)
             if IsControlJustPressed(0, 38) then
                 cablecar.is_player_seated = false
+FreezeEntityPosition(xPlayer ,false)
                 DetachEntity(ply, 0, 0)
             end
         end
