@@ -75,7 +75,7 @@ local CABLE_CARS = {
         speed = 17.5, -- Movement speed modifier, determines the speed of the car on the track
 		maxSpeedDistance = 50, -- Distance from station at which the car will attain maximum speed
         state = "IDLE", -- The current state of the car
-	showTramBlips = true, -- Show blip on the map
+	showTramBlips = false, -- Show blip on the map
         offset = vector3(-0.2, 0.0, 0.0),
     },
     [1] = { -- Right track car
