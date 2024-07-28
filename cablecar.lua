@@ -1,13 +1,3 @@
---[[
-    Skyway Tram (Cablecar) by GlitchDetector, Nov. 2018
-    Thanks to:
-        IllusiveTea for moral support and introduing me to the topic of cable cars
-
-    These trams try to sync between players, but is no guaranteed, they only sync whenever the hosts car reaches the bottom
-    You can enter the cars when they are docked, and you'll have to press E to attach yourself, if you're not attached the car kicks you out
-    Cars makes noise upon arrival and departure, and makes a running sound while moving
-]]
-
 -- Lerp, not to be confused with Liable Emerates Role Play
 function Lerp(a, b, t)
 	return a + (b - a) * t
