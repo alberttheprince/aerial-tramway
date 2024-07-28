@@ -394,7 +394,7 @@ function UpdateCablecarMovement(cablecar)
             -- Check if we've reached the bottom again
             if cablecar.gradient <= 1 then
                 -- Set to raw idle to do nothing and ask the server to sync cars
-                cablecar.state = "IDLE"
+                cablecar.state = "MOVE_TO_IDLE_BOTTOM"
                 cablecar.gradient_distance = 0.0
                 TriggerServerEvent("omni:sync", cablecar.index, "IDLE_BOTTOM")
                 return
