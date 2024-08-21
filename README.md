@@ -8,6 +8,10 @@
 - Cars can be ridden by entering them and pressing E while they are landed
 - Audio for tram movements, doors opening/closing, and the arrival/departure cues
 
+# Dependencies
+- [ox_lib](https://github.com/overextended/ox_lib)
+
+
 # Disclaimer
 This script tries to sync the cars, but it is not guaranteed that they are synced at all times
 
